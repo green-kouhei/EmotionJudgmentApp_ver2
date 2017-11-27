@@ -1,16 +1,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="jp.ac.fjb.x15g020.emotionjudgmentapp_ver2.view.CameraFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="jp.ac.fjb.x15g020.emotionjudgmentapp_ver2.view.CameraFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
     <TextureView
         android:id="@+id/textureCamera"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,6 +23,17 @@
             android:layout_alignParentStart="true"
             android:background="#88000000"
             android:text="テスト用テキストエリア"
-            android:textColor="#ffffff"/>
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textStatus"
+            android:layout_alignBottom="@+id/textStatus"
+            android:layout_marginStart="11dp"
+            android:layout_toEndOf="@+id/textStatus"
+            android:text="結果へ" />
     </RelativeLayout>
+
 </FrameLayout>

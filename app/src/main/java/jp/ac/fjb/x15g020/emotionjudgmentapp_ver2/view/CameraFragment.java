@@ -1,15 +1,19 @@
 package jp.ac.fjb.x15g020.emotionjudgmentapp_ver2.view;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +23,7 @@ import org.json.JSONObject;
 import jp.ac.fjb.x15g020.emotionjudgmentapp_ver2.R;
 import jp.ac.fjb.x15g020.emotionjudgmentapp_ver2.model.CameraPreview;
 import jp.ac.fjb.x15g020.emotionjudgmentapp_ver2.model.EmotionEngine;
+import layout.ResultFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,7 +54,27 @@ public class CameraFragment extends Fragment implements View.OnTouchListener, Em
 		mCamera.setTextureView(textureView);
 
 		getView().setOnTouchListener(this);
+
+
+		//IDからオブジェクトを取得
+		Button button  = (Button)view.findViewById(R.id.button);
+		//リスナーを登録
+		button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				FragmentTransaction ft = getFragmentManager().beginTransaction();
+				ft.replace(R.id.layout_main,new ResultFragment());
+				ft.commit();
+//				TextView t1 = getView().findViewById(R.id.textStatus);
+//				t1.setText("fjkdjfdfdf");
+			}
+		});
+
+
 	}
+
+
+
 
 	@Override
 	public void onResume() {
@@ -84,6 +109,7 @@ public class CameraFragment extends Fragment implements View.OnTouchListener, Em
 	public void onEmotion(JSONArray json) {
 		if(json == null)
 			Toast.makeText(getContext(), "接続エラー", Toast.LENGTH_SHORT).show();
+
 		else{
 			if(json.length() == 0)
 				Toast.makeText(getContext(), "顔検出エラー", Toast.LENGTH_SHORT).show();
@@ -110,4 +136,6 @@ public class CameraFragment extends Fragment implements View.OnTouchListener, Em
 			}
 		}
 	}
+
+
 }
